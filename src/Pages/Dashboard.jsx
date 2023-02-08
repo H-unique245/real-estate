@@ -1,9 +1,9 @@
-import React from 'react'
+import Profile from '../Components/Profile'
 
 function Dashboard() {
   return (
     <div>
-      This is dashboard page
+      <Profile />
     </div>
   )
 }

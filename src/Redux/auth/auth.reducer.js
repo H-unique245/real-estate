@@ -48,6 +48,16 @@ export const authReducer=(state=authState,{type,payload})=>{
             loading:false
         }
      }
+     case types.AUTH_LOGOUT: {
+        localStorage.removeItem("user");
+        return {
+            ...state,
+            error: false,
+            isAuth:false,
+            isLogin:false,
+            loading:false,
+        }
+     }
        default :{
           return state;
        }

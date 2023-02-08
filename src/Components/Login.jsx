@@ -41,7 +41,7 @@ const Login = () => {
         isClosable: true,
      })}
     if(isLogin){
-          navigate("/dashboard")
+          navigate("/property")
     }
 },[isLogin,error])
  

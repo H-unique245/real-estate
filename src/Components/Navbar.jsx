@@ -3,7 +3,6 @@ import {
   Flex,
   Avatar,
   HStack,
-  //   Link,
   IconButton,
   Button,
   Menu,
@@ -18,7 +17,9 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { AUTH_LOGOUT } from "../Redux/auth/auth.actionTypes";
 
 const Links = [
   {
@@ -44,11 +45,21 @@ const NavLink = ({ children }) => (
     <Link to={children.path}>{children.title}</Link>
   </Box>
 );
-
 function Navbar() {
+    let data= JSON.parse(localStorage.getItem("user"));
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isAuth } = useSelector((store) => store.auth);
-  console.log(isAuth);
+  const { user } = useSelector((store) => store.auth);
+  const dispatch= useDispatch();
+  const [userdata,setUserData]= useState({});
+ 
+  const handleLogout=()=>{
+    dispatch({type:AUTH_LOGOUT})
+    window.location.reload();
+  }
+  useEffect(()=>{
+    console.log("user",user);
+setUserData(data)
+},[user])
 
   return (
     <>
@@ -76,7 +87,7 @@ function Navbar() {
               ))}
             </HStack>
           </HStack>
-          {isAuth ? (
+          {user ? (
             <Flex alignItems={"center"}>
               <Menu>
                 <MenuButton
@@ -94,10 +105,10 @@ function Navbar() {
                   />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Link 1</MenuItem>
-                  <MenuItem>Link 2</MenuItem>
+                  <MenuItem>Name : {userdata && userdata.name}</MenuItem>
+                  <MenuItem>Email :{userdata && userdata.email}</MenuItem>
                   <MenuDivider />
-                  <MenuItem>Link 3</MenuItem>
+                  <MenuItem onClick={handleLogout} >Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Flex>

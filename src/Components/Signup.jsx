@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
       name: "",
       email: "",
       password: "",
+      property:[]
     });
     const navigate = useNavigate();
   

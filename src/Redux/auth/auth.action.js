@@ -3,7 +3,7 @@ import * as types from "./auth.actionTypes";
 const RegisterUser=(data)=>async(dispatch)=>{
   dispatch({type:types.AUTH_LOADING})
     try{
-   let res= await axios.post("https://revision-server-adkv.onrender.com/users",data);
+   let res= await axios.post("https://json-server-backend.onrender.com/users",data);
    console.log(res.data)
    dispatch({type:types.AUTH_REGISTER_SUCCESS});
   }
@@ -15,7 +15,7 @@ const RegisterUser=(data)=>async(dispatch)=>{
 const LoginUser=(data)=>async(dispatch)=>{
     dispatch({type:types.AUTH_LOADING})
       try{
-     let res= await axios.post("https://revision-server-adkv.onrender.com/login",data);
+     let res= await axios.post("https://json-server-backend.onrender.com/login",data);
      console.log(res.data)
      dispatch({type:types.AUTH_LOGIN_SUCCESS,payload:res.data});
     }

@@ -6,11 +6,12 @@ import Signup from '../Components/Signup'
 import Dashboard from '../Pages/Dashboard'
 import Home from '../Pages/Home'
 import Property from '../Pages/Property'
+import PrivateRoute from './PrivateRoute'
 
 function AllRoutes() {
   return (
     <Routes>
-      <Route path="/dashboard" element={<Dashboard/>} />
+      <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
